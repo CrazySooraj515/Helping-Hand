@@ -1,11 +1,11 @@
 <?php
 define('MYSITE', true);
-include 'db/dbconnect.php';
+include '../db/dbconnect.php';
 
 
 $title = 'Main';
-$css_directory = 'css/main.min.css';
-$css_directory2 = 'css/main.min.css.map';
+$css_directory = '../css/main.min.css';
+$css_directory2 = '../css/main.min.css.map';
 include 'includes/header.php';
 include 'includes/navbar.php';
 ?>
@@ -56,10 +56,10 @@ include 'includes/navbar.php';
                                 <div class="card-body">
                                     <div class="col-sm-12 empty-cart-cls text-center">
                                         <!-- <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3"> -->
-                                        <img src="img/EMPTY_CART.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                                        <img src="../img/EMPTY_CART.png" width="130" height="130" class="img-fluid mb-4 mr-3">
                                         <h3><strong>Your Cart is Empty</strong></h3>
                                         <h5 class="text-secondary">You will find a lot of interesting services on our "Service" page :)</h5>
-                                        <a href="index.php" class="btn btn-c1-1 cart-btn-transform m-3" data-abc="true">continue shopping</a>
+                                        <a href="customer_index.php" class="btn btn-c1-1 cart-btn-transform m-3" data-abc="true">continue shopping</a>
 
                                     </div>
                                 </div>
@@ -67,14 +67,10 @@ include 'includes/navbar.php';
                         </div>
                     </div>
                 </div>
-
-
             <?php
             } else {
             ?>
-
                 <div class="col-lg-9">
-
                     <table class="table">
                         <thead class="thead-light text-center">
                             <tr>
@@ -102,7 +98,7 @@ include 'includes/navbar.php';
                                     </td>
                                     <!-- quantity -->
                                     <form action="manage_cart.php" method="post">
-                                        <td><input type="number" class="text-center iquantity" name="Mod_Quantity" onchange="this.form.submit();" value="<?php echo $value['quantity']; ?>" min="1" max="20" step="1" oninput="validity.valid||(value='');"></td>
+                                        <td><input type="number" pattern="[1-9]\d*" class="text-center iquantity" name="Mod_Quantity" onchange="this.form.submit();" value="<?php echo $value['quantity']; ?>"  min="1" step="1" oninput="validity.valid||(value='');"></td>
                                         <input type="hidden" name="service_title" value="<?php echo $value['service_title']; ?>">
                                     </form>
                                     <!-- line Total -->
@@ -137,14 +133,14 @@ include 'includes/navbar.php';
                             <form action="order.php" method="post">
                                 <div class="form-group">
                                     <label>Full Name</label>
-                                    <input type="text" class="form-control" id="fullname" required>
+                                    <input type="text" class="form-control" name="full_name" id="fullname" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Phone Number</label>
+                                    <label>Phone Number</label>
                                     <input type="tel" class="form-control" required pattern="^[0-9-+\s()]{10}" name="phone" aria-describedby="phoneFeedback" data-for="phoneNumber">
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Address</label>
+                                    <label>Address</label>
                                     <textarea name="address" id="address" cols="25" rows="3" required></textarea>
                                 </div>
 
@@ -153,16 +149,14 @@ include 'includes/navbar.php';
                                     <input type="text" class="form-control" pattern="\d{6}" name="pincode" id="pincode" required>
                                 </div>
 
-
                                 <div class="form-group">
                                     <label>Service Date:-</label>
                                     <input type="datetime-local" class="form-control" name="due_date" id="due_date" required>
                                     <small class="text-secondary">which DATE & TIME you want a service</small>
                                     <div class="invalid-feedback">
-                                        <p id="error-message"></p>
+                                       <p id="error-message"></p> 
                                     </div>
                                 </div>
-
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="pay_mode" id="exampleRadios1" value="COD" checked>
@@ -177,7 +171,9 @@ include 'includes/navbar.php';
                                     </label>
                                 </div> -->
                                 <br>
-                                <button class="btn btn-primary btn-block" name="order">Make Order</button>
+                                <button type="submit" class="btn btn-primary btn-block" name="order">Make Order</button>
+                                <input type="hidden" id="total" name="total">
+
                             </form>
                         <?php
                         }
@@ -213,8 +209,10 @@ include 'includes/navbar.php';
             localStorage.setItem("myVar", myVariable);
         }
 
+
         //print grand total
         gtotal.innerText = gt;
+        document.getElementById("total").value = gt;
     }
 
     subTotal();
@@ -241,6 +239,6 @@ include 'includes/navbar.php';
 
 
 <?php
-include 'includes/footer.php';
+include '../includes/footer.php';
 // include 'includes/navfooter.php';
 ?>

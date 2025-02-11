@@ -1,10 +1,10 @@
 <?php
 define('MYSITE', true);
-include 'db/dbconnect.php';
+include '../db/dbconnect.php';
 
 $title = 'Main';
-$css_directory = 'css/main.min.css';
-$css_directory2 = 'css/main.min.css.map';
+$css_directory = '../css/main.min.css';
+$css_directory2 = '../css/main.min.css.map';
 include 'includes/header.php';
 include 'includes/navbar.php';
 ?>
@@ -18,7 +18,7 @@ include 'includes/navbar.php';
     }
 
     .showcategoryimg {
-        background-image: url('img/services/service_14.jpg');
+        background-image: url('../img/services/service_14.jpg');
         object-fit: cover;
         background-repeat: no-repeat;
         background-size: cover;
@@ -31,7 +31,7 @@ include 'includes/navbar.php';
         bottom: 0;
         left: 860px;
         bottom: 10px;
-        width: 100%;    
+        width: 100%;
         z-index: 1;
     }
 </style>
@@ -52,7 +52,7 @@ include 'includes/navbar.php';
     } else {
         // if anyone directly enter url then else part run
         echo "<script>
-        window.location.href='index.php';
+        window.location.href='customer_index.php';
         </script>";
     }
     ?>
@@ -197,7 +197,7 @@ include 'includes/navbar.php';
                             </center> -->
 
                                 <div class=" ml-5 text-center" style="width:10rem;">
-                                    <img src="img/<?php echo $category_id ?>.jpg" style="width:100px; height:100px;object-fit:cover; border-radius:10px" class="card-img-top" alt="...">
+                                    <img src="../img/<?php echo $category_id ?>.jpg" style="width:100px; height:100px;object-fit:cover; border-radius:10px" class="card-img-top" alt="...">
                                     <div class="card-body text-center">
                                         <button type="submit" name="add_to_cart" class="card-link btn btn-c1-1" style="border-radius:10px;">Add to Cart</button>
                                         <!-- category id pn moklvi pdi because jo category id bahar thi set thy ne nai aave to error batavse dynamic page che atle. -->
@@ -283,6 +283,6 @@ include 'includes/navbar.php';
 
 
     <?php
-    include 'includes/footer.php';
+    include '../includes/footer.php';
     // include 'includes/navfooter.php';
     ?>

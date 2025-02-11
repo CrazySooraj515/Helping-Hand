@@ -9,17 +9,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // check whether this item already added or not
             $myservice = array_column($_SESSION['cart'], 'service_title');
             if (in_array($_POST['service_title'], $myservice)) {
+               
                 // if any one press add-to-cart button again then quantty upadated
                 foreach ($_SESSION['cart'] as $key => $value) {
                     if ($value['service_title'] == $_POST['service_title']) {
                         $_SESSION['cart'][$key]['quantity'] += 1;
                         $_SESSION['status'] = "Quantity updated";
                         echo "<script>
-            window.location.href = 'serviceshow.php?category_id=" . $category_id . "';
-            </script>";
+                window.location.href = 'serviceshow.php?category_id=" . $category_id . "';
+                </script>";
                     }
                 }
-                
+
             } else {
                 // success added
                 //count the cart item. it shows how many services added in this cart.
@@ -49,12 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'sp_id' => $_POST['sp_id'],
                 'price' => $_POST['price'],
                 'quantity' => 1
-                
             );
-
             $_SESSION['status'] = "Service successfully added";
             // header("location: serviceshow.php?category_id='.$category_id.'");
-
             echo "<script>
                 window.location.href = 'serviceshow.php?category_id=" . $category_id . "';
                 </script>";
